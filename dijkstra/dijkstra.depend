@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1557871732 source:c:\users\user_account\desktop\dijkstra\main.c
+1558046720 source:c:\users\user_account\desktop\lab3_dijkstra\dijkstra\main.c
 	<stdio.h>
 	<conio.h>
+	<stdlib.h>
 

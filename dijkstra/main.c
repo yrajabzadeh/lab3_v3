@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<conio.h>
 #include<stdlib.h>
+
 #define INFINITY 9999
 #define MAX 10
 #define MAX_SIZE 1000
@@ -12,6 +13,8 @@ int main()
     int i,j,n=0,u,v;
 
     char ch;
+    char U;
+    char V;
 
     FILE *file;
     file=fopen("map.txt", "r");
@@ -43,33 +46,59 @@ int main()
     fclose(file);
     while(1)
     {
-
-    char testU;
-    char testV;
-
     printf("\nEnter the source node:");
-    scanf("%c",&testU);
-    if(testU=='a'){
+    scanf(" %c",&U);
+    if (U =='a')
         u=0;
-    }
+    else if (U =='b')
+        u=1;
+    else if (U =='c')
+        u=2;
+    else if (U =='d')
+        u=3;
+    else if (U =='e')
+        u=4;
+    else if (U =='f')
+        u=5;
+    else if (U =='g')
+        u=6;
+    else if (U =='h')
+        u=7;
     printf("\nEnter the destination node:");
-    scanf("%c",&testV);
-    if(testV=='b'){
+    scanf(" %c",&V);
+    if(V =='a')
+        v=0;
+    else if (V =='b')
         v=1;
-    }
-
-    dijkstra(G,n,u,v);
+    else if (V =='c')
+        v=2;
+    else if (V =='d')
+        v=3;
+    else if (V =='e')
+        v=4;
+    else if (V =='f')
+        v=5;
+    else if (V =='g')
+        v=6;
+    else if (V =='h')
+        v=7;
+    dijkstraalg(G,n,u,v);
     }
 
     return 0;
 }
 
-void dijkstra(int** G,int n,int startnode, int destination)
+void dijkstraalg (int** G,int n,int startnode,int destination)
 {
 
     int cost[MAX][MAX],distance[MAX],pred[MAX];
-    int visited[MAX],count,mindistance,nextnode,i,v,j;
+    int visited[MAX],count,mindistance,nextnode,i,j;
 
+/*
+pred[] stores the previous value of each node
+count gives the number of nodes visited
+create the cost matrix
+*/
 
     for(i=0;i<n;i++)
         for(j=0;j<n;j++)
@@ -78,7 +107,7 @@ void dijkstra(int** G,int n,int startnode, int destination)
             else
                 cost[i][j]=G[i][j];
 
-
+// pred[],distance[] and visited[]
     for(i=0;i<n;i++)
     {
         distance[i]=cost[startnode][i];
@@ -94,6 +123,7 @@ void dijkstra(int** G,int n,int startnode, int destination)
     {
         mindistance=INFINITY;
 
+//gives the node at shortest distance
         for(i=0;i<n;i++)
             if(distance[i]<mindistance&&!visited[i])
             {
@@ -101,31 +131,32 @@ void dijkstra(int** G,int n,int startnode, int destination)
                 nextnode=i;
             }
 
-            visited[nextnode]=1;
+//check if a better path exists
+
+        visited[nextnode]=1;
         for(i=0;i<n;i++)
-                if(!visited[i])
-                    if(mindistance+cost[nextnode][i]<distance[i])
-                    {
-                        distance[i]=mindistance+cost[nextnode][i];
-                        pred[i]=nextnode;
-
-                    }
-
+            if(!visited[i])
+                if(mindistance+cost[nextnode][i]<distance[i])
+                {
+                    distance[i]=mindistance+cost[nextnode][i];
+                    pred[i]=nextnode;
+                }
         count++;
     }
 
+//prints the path and distance of each node
 
 
         if(destination!=startnode)
         {
             printf("\nDistance of node%d=%d",destination,distance[destination]);
-            printf("\nPath=%d",destination);
-
+            printf("\nPath=%c",destination+97);
             j=destination;
             do
             {
                 j=pred[j];
-                printf("<--%d",j);
-            }while(j!=startnode);
-    }
+                printf("<-%c",j+97);
+            }
+            while(j!=startnode);
+        }
 }
