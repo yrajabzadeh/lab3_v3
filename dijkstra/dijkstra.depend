@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1557871732 source:c:\users\user_account\desktop\dijkstra\main.c
+	<stdio.h>
+	<conio.h>
+
