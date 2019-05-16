@@ -14,7 +14,7 @@ int main()
     char ch;
 
     FILE *file;
-    file=fopen("costmat.txt", "r");
+    file=fopen("map.txt", "r");
 
     while(!feof(file))
     {
@@ -25,7 +25,7 @@ int main()
     }
     }
     fclose(file);
-    file=fopen("costmat.txt", "r");
+    file=fopen("map.txt", "r");
 
     int** G = (int **) malloc(10 * sizeof (int));
     for(i=0;i<10;++i)
